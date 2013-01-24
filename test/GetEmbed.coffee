@@ -36,3 +36,11 @@ exports['test reading an invalid URL'] = (test) ->
     test.done()
 
   ins.send 'http://example.net/foo/bar/baz'
+
+exports['test reading a valid URL without oEmbeds'] = (test) ->
+  [c, ins, token, out, err] = setupComponent()
+  err.once 'data', (data) ->
+    test.ok data
+    test.done()
+
+  ins.send 'http://bergie.iki.fi/'
