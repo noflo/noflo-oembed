@@ -21,6 +21,7 @@
   },
   "noflo": {
     "components": {
+      "GetEmbed": "./components/GetEmbed.coffee"
     }
   },
   "scripts": {
