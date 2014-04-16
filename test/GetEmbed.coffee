@@ -28,6 +28,7 @@ exports['test reading a Flickr URL'] = (test) ->
     test.done()
 
   ins.send 'http://www.flickr.com/photos/bergie/5293597184/in/set-72157601512952655'
+  ins.disconnect()
 
 exports['test reading an invalid URL'] = (test) ->
   [c, ins, token, out, err] = setupComponent()

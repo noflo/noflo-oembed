@@ -24,7 +24,6 @@ class GetEmbed extends noflo.AsyncComponent
         @outPorts.out.beginGroup url
         @outPorts.out.send embed
         @outPorts.out.endGroup()
-        @outPorts.out.disconnect()
         callback()
     catch e
       callback e
