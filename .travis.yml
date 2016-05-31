@@ -1,5 +1,12 @@
 language: node_js
 node_js:
-  - "4.2"
-
+- '4.2'
 script: npm test
+deploy:
+  provider: npm
+  email: henri.bergius@iki.fi
+  api_key:
+    secure: kfA24iQBg79f9Zy4zUwqH5Q1KU09rqgtFe6heTCGYyagri8AN2b8AqbhwkU8PbtdGwfI+a6o6B5qcKUGyCoSA2FuGNAvZEPX9KBA/lj0k5Wm+5QKK82H6IS6i1QPyXzoTGU2BqM1YloaSaShhGMCLFdyMIpuFGRb+geDvYpB8wk=
+  on:
+    tags: true
+    repo: noflo/noflo-oembed
