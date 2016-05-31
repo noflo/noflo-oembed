@@ -17,7 +17,7 @@
     "node": ">=0.6.0"
   },
   "dependencies": {
-    "noflo": "0.5.x",
+    "noflo": "0.5.22",
     "oembed": "0.1.x"
   },
   "devDependencies": {
