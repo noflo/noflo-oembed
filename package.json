@@ -8,12 +8,14 @@
     "type": "git",
     "url": "https://github.com/noflo/noflo-oembed.git"
   },
-  "keywords": ["noflo"],
+  "keywords": [
+    "noflo"
+  ],
   "engines": {
     "node": ">=0.6.0"
   },
   "dependencies": {
-    "noflo": "~0.5.22",
+    "noflo": "~0.7.0",
     "oembed": "~0.1.0"
   },
   "devDependencies": {
