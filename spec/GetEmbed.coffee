@@ -15,6 +15,7 @@ describe 'GetEmbed component', ->
   error = null
   before (done) ->
     @timeout 4000
+    return @skip() unless process.env.EMBEDLY_API_TOKEN
     loader = new noflo.ComponentLoader baseDir
     loader.load 'oembed/GetEmbed', (err, instance) ->
       return done err if err
@@ -23,6 +24,7 @@ describe 'GetEmbed component', ->
       token = noflo.internalSocket.createSocket()
       c.inPorts.in.attach ins
       c.inPorts.token.attach token
+      token.send process.env.EMBEDLY_API_TOKEN
       done()
   beforeEach ->
     out = noflo.internalSocket.createSocket()
@@ -40,17 +42,13 @@ describe 'GetEmbed component', ->
         chai.expect(data.title).to.equal 'Menengai crater'
         chai.expect(data.url).not.be.to.empty
         done()
+      error.on 'data', done
       ins.send 'http://www.flickr.com/photos/bergie/5293597184/in/set-72157601512952655'
       ins.disconnect()
   describe 'reading an invalid URL', ->
     it 'should send an error', (done) ->
       error.on 'data', (data) ->
         chai.expect(data).to.be.an 'error'
+        done()
       ins.send 'http://example.net/foo/bar/baz'
-      ins.disconnect()
-  describe 'reading a valid URL without oEmbeds', ->
-    it 'should send an error', (done) ->
-      error.on 'data', (data) ->
-        chai.expect(data).to.be.an 'error'
-      ins.send 'http://bergie.iki.fi/'
       ins.disconnect()

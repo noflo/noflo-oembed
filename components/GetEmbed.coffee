@@ -9,6 +9,7 @@ exports.getComponent = ->
     datatype: 'string'
   c.inPorts.add 'token',
     datatype: 'string'
+    required: true
   c.outPorts.add 'out',
     datatype: 'object'
   c.outPorts.add 'error',
