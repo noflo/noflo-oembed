@@ -10,3 +10,6 @@ deploy:
   on:
     tags: true
     repo: noflo/noflo-oembed
+env:
+  global:
+    secure: WgACVa5clhk5mf4P/cEQ/vGFs31AjXS6froS5XJc2dUkU81NZlPs67J3B/Xy7H2+GhniIh5hnHiGLWvk0PPMkhQarVT7xUEEiV4tF5+shoeNe6RBudwUmB5gcHvMQ2XINMGRI996ciSHNiypwDo85q1Nc/41iQxTHA2O73aqkFc=
