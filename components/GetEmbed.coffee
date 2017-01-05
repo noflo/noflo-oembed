@@ -1,31 +1,35 @@
 noflo = require 'noflo'
-oembed = require 'oembed'
+request = require 'superagent'
 
-class GetEmbed extends noflo.AsyncComponent
-  constructor: ->
-    @token = null
+exports.getComponent = ->
+  c = new noflo.Component
+  c.icon = 'cloud-download'
+  c.description = 'Get oEmbed information for a URL'
+  c.inPorts.add 'in',
+    datatype: 'string'
+  c.inPorts.add 'token',
+    datatype: 'string'
+    required: true
+  c.outPorts.add 'out',
+    datatype: 'object'
+  c.outPorts.add 'error',
+    datatype: 'object'
 
-    @inPorts =
-      in: new noflo.Port
-      token: new noflo.Port
-    @outPorts =
-      out: new noflo.Port
-      error: new noflo.Port
+  noflo.helpers.WirePattern c,
+    forwardGroups: true
+    params: ['token']
+    async: true
+  , (url, groups, out, callback) ->
+    params =
+      url: url
+    params.key = c.params.token if c.params.token
 
-    @inPorts.token.on 'data', (data) =>
-      oembed.EMBEDLY_KEY = data
-
-    super()
-
-  doAsync: (url, callback) ->
-    try
-      oembed.fetch url, {}, (err, embed) =>
-        return callback err if err
-        @outPorts.out.beginGroup url
-        @outPorts.out.send embed
-        @outPorts.out.endGroup()
-        callback()
-    catch e
-      callback e
-
-exports.getComponent = -> new GetEmbed
+    request
+    .get('https://api.embedly.com/1/oembed')
+    .query(params)
+    .end (err, res) ->
+      return callback err if err
+      out.beginGroup url
+      out.send res.body
+      out.endGroup()
+      callback()

@@ -8,18 +8,21 @@
     "type": "git",
     "url": "https://github.com/noflo/noflo-oembed.git"
   },
-  "keywords": ["noflo"],
+  "keywords": [
+    "noflo"
+  ],
   "engines": {
     "node": ">=0.6.0"
   },
   "dependencies": {
-    "noflo": "~0.5.22",
-    "oembed": "~0.1.0"
+    "noflo": "0.x >= 0.5",
+    "superagent": "^3.3.1"
   },
   "devDependencies": {
-    "nodeunit": "^0.9.1",
-    "coffeelint": "^1.15.7",
-    "coffee-script": "^1.10.0"
+    "chai": "^3.5.0",
+    "coffee-script": "^1.12.1",
+    "coffeelint": "^1.16.0",
+    "mocha": "^3.2.0"
   },
   "noflo": {
     "icon": "youtube-play",
@@ -29,6 +32,6 @@
   },
   "scripts": {
     "pretest": "./node_modules/.bin/coffeelint -r components",
-    "test": "./node_modules/.bin/nodeunit test"
+    "test": "mocha --compilers coffee:coffee-script/register --require coffee-script/register -R spec -t 2000 spec/*.coffee"
   }
 }
