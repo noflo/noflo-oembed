@@ -21,7 +21,7 @@
   "devDependencies": {
     "chai": "^4.0.0",
     "coffee-script": "^1.12.1",
-    "coffeelint": "^1.16.0",
+    "coffeelint": "^2.0.0",
     "mocha": "^3.2.0"
   },
   "noflo": {
