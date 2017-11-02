@@ -15,7 +15,6 @@ describe 'GetEmbed component', ->
   error = null
   before (done) ->
     @timeout 4000
-    return @skip() unless process.env.EMBEDLY_API_TOKEN
     loader = new noflo.ComponentLoader baseDir
     loader.load 'oembed/GetEmbed', (err, instance) ->
       return done err if err
@@ -23,8 +22,9 @@ describe 'GetEmbed component', ->
       ins = noflo.internalSocket.createSocket()
       token = noflo.internalSocket.createSocket()
       c.inPorts.in.attach ins
-      c.inPorts.token.attach token
-      token.send process.env.EMBEDLY_API_TOKEN
+      if process.env.EMBEDLY_API_TOKEN
+        c.inPorts.token.attach token
+        token.send process.env.EMBEDLY_API_TOKEN
       done()
   beforeEach ->
     out = noflo.internalSocket.createSocket()
@@ -36,6 +36,7 @@ describe 'GetEmbed component', ->
     c.outPorts.error.detach error
   describe 'reading a Flickr URL', ->
     it 'should produce embed data', (done) ->
+      return @skip() unless process.env.EMBEDLY_API_TOKEN
       out.on 'data', (data) ->
         chai.expect(data).to.be.an 'object'
         chai.expect(data.type).to.equal 'photo'
@@ -47,6 +48,7 @@ describe 'GetEmbed component', ->
       ins.disconnect()
   describe 'reading an invalid URL', ->
     it 'should send an error', (done) ->
+      return @skip() unless process.env.EMBEDLY_API_TOKEN
       error.on 'data', (data) ->
         chai.expect(data).to.be.an 'error'
         done()
