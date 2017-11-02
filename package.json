@@ -15,7 +15,7 @@
     "node": ">=0.6.0"
   },
   "dependencies": {
-    "noflo": "0.x >= 0.5",
+    "noflo": "0.x >= 0.8",
     "superagent": "^3.3.1"
   },
   "devDependencies": {
@@ -25,10 +25,7 @@
     "mocha": "^4.0.0"
   },
   "noflo": {
-    "icon": "youtube-play",
-    "components": {
-      "GetEmbed": "./components/GetEmbed.coffee"
-    }
+    "icon": "youtube-play"
   },
   "scripts": {
     "pretest": "./node_modules/.bin/coffeelint -r components",
