@@ -15,7 +15,7 @@
     "node": ">=0.6.0"
   },
   "dependencies": {
-    "noflo": "0.x >= 0.8",
+    "noflo": "^1.0.0",
     "superagent": "^3.3.1"
   },
   "devDependencies": {
@@ -29,6 +29,6 @@
   },
   "scripts": {
     "pretest": "./node_modules/.bin/coffeelint -r components",
-    "test": "mocha --require coffeescript/register --require coffee-script/register -R spec -t 2000 spec/*.coffee"
+    "test": "mocha --require coffeescript/register -R spec -t 2000 spec/*.coffee"
   }
 }
